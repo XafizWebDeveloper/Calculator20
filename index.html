@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="photo.jpg">
+</head>
+<body>
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" onclick="toggleTheme()" />
+            <div class="slider round">
+                <i class="fas fa-sun sun-icon"></i>
+                <i class="fas fa-moon moon-icon"></i>
+            </div>
+        </label>
+    </div>
+
+    <div class="container">
+        <h2>20% ни ҳисоблаш</h2>
+        
+        <div class="input-group">
+            <label>Қарз суммаси:</label>
+            <input type="text" id="totalDebt" value="Сумма" 
+                   oninput="formatNumberInput(this)" 
+                   onfocus="this.select()" 
+                   onkeydown="handleTotalDebtEnter(event)" 
+                   autocomplete="off">
+        </div>
+
+        <div id="paymentRows">
+            <div class="payment-row flex-row">
+                <input type="text" id="pDate" placeholder="Сана (12.04.2026)" class="p-date" 
+                       onkeydown="handleDateEnter(event, this)" 
+                       onfocus="this.select()" 
+                       autocomplete="off">
+                
+                <input type="text" id="pAmount" placeholder="Тўланган сумма" class="p-amount" 
+                       oninput="formatNumberInput(this)" 
+                       onkeydown="handleAmountEnter(event, this)" 
+                       onfocus="this.select()" 
+                       autocomplete="off">
+            </div>
+        </div>
+
+        <button onclick="calculate()">Ҳисоблаш</button>
+
+        <div id="result"></div>
+
+        
+        
+        <div class="footer">
+            <p>Ишлаб чиқувчи: <a href="https://t.me/Rasulov_Xafiz" target="_blank" class="author-link"><i class="fab fa-telegram"></i> Хафиз Расулов</a></p>
+        </div>
+    </div>
+    <script src="calc.js"></script>
+</body>
+</html>

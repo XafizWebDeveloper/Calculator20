@@ -16,9 +16,15 @@ function handleTotalDebtEnter(event) {
 function handleDateEnter(event, input) {
     if (event.key === "Enter") {
         let val = input.value.trim().replace(/\D/g, ''); 
+        
+        // Жорий сана маълумотларини оламиз
+        let now = new Date();
+        let currentMonth = (now.getMonth() + 1).toString().padStart(2, '0');
+        let currentYear = now.getFullYear().toString();
+
         let day = "";
-        let month = "04"; // Дефаулт Апрель
-        let year = "2026";
+        let month = currentMonth; // Энди доим шу ойни олади
+        let year = currentYear;  // Энди доим шу йилни олади
 
         if (val.length > 0) {
             if (val.length <= 2) {
@@ -77,8 +83,11 @@ function calculate() {
         let available20Percents = Math.floor(shareOfDebt / 20); 
 
         let startDate = parseDate(dateInput);
-        let today = new Date(2026, 3, 13); // Бугунги сана 13.04.2026
-        let tempDate = new Date(startDate);
+        let today = new Date(); 
+        today.setHours(0, 0, 0, 0);
+
+        // МАНА ШУ ҚАТОРНИ ТЕКШИРИНГ:
+        let tempDate = new Date(startDate); 
 
         let lastActionWas20Percent = false; 
 
@@ -87,7 +96,6 @@ function calculate() {
             let statusText = "";
             let isGreen = false;
 
-            // Тўлов қилинган биринчи кун
             if (tempDate.getTime() === startDate.getTime()) {
                 if (available20Percents > 0) {
                     statusText = `${dateStr} - 20%`;
@@ -95,7 +103,7 @@ function calculate() {
                     available20Percents--;
                     lastActionWas20Percent = true;
                 } else {
-                    statusText = `${dateStr} - (Етарли эмас)`; // Тўлов 20% дан кам бўлган ҳолат
+                    statusText = `${dateStr} - (Етарли эмас)`;
                     isGreen = false;
                     lastActionWas20Percent = false;
                 }
